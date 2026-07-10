@@ -1,7 +1,7 @@
-<?php
+iterable<\App\Model\Entity\Estagiario><?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Administrador[]|\Cake\Collection\CollectionInterface $administradores
+ * @var iterable<\App\Model\Entity\Administrador> $administradores
  */
 ?>
 <div class="administradores index content">

@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Aluno[]|\Cake\Collection\CollectionInterface $alunos
+ * @var iterable<\App\Model\Entity\Aluno> $alunos
  */
 
 declare(strict_types=1);

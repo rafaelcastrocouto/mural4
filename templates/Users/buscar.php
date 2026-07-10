@@ -2,7 +2,7 @@
 
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\User[]|\Cake\Collection\CollectionInterface $users
+ * @var iterable<\App\Model\Entity\User> $users
  */
 
 

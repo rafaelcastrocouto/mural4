@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Muralestagio[]|\Cake\Collection\CollectionInterface $muralestagios
+ * @var iterable<\App\Model\Entity\Muralestagio> $muralestagios
  */
 declare(strict_types=1);
 

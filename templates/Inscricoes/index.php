@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Inscricao[]|\Cake\Collection\CollectionInterface $inscricoes
+ * @var iterable<\App\Model\Entity\Inscricao> $inscricoes
  */
 
 declare(strict_types=1);

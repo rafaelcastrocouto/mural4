@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Complemento[]|\Cake\Collection\CollectionInterface $complementos
+ * @var iterable<\App\Model\Entity\Complemento> $complementos
  */
 ?>
 <div class="complementos index content">

@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Supervisor[]|\Cake\Collection\CollectionInterface $supervisores
+ * @var iterable<\App\Model\Entity\Supervisor> $supervisores
  */
 
 

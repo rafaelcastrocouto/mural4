@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Visita[]|\Cake\Collection\CollectionInterface $visitas
+ * @var iterable<\App\Model\Entity\Visita> $visitas
  */
 ?>
 <div class="visitas index content">

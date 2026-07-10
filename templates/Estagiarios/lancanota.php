@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Estagiario[]|\Cake\Collection\CollectionInterface $estagiarios
+ * @var iterable<\App\Model\Entity\Estagiario> $estagiarios
  */
 // pr($estagiarios);
 // pr($periodo);

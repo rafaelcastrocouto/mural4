@@ -31,7 +31,7 @@ class Inscricao extends Entity
      */
     protected array $_accessible = [
         'aluno_id' => true,
-        'instituicao_id' => true, // id atual do mural de estagios
+        'instituicao_id' => true,
         'mural_estagio_id' => true,
         'data' => true,
         'periodo' => true,

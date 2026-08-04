@@ -24,6 +24,15 @@ class InscricaoPolicy implements BeforePolicyInterface
     return null;
   }
   
+  public function canAdd(IdentityInterface $userSession, Inscricao $inscricaoData)
+  {
+    if (!empty($userSession)) {
+      return new Result(true);
+    } else {
+      return new Result(false, 'Erro: inscricoes view policy not authorized');
+    }
+  }
+  
   public function canView(IdentityInterface $userSession, Inscricao $inscricaoData)
   {
     if ($this->sameUser($userSession, $inscricaoData)) {

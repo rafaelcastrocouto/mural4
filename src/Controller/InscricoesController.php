@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use Authorization\Exception\ForbiddenException;
 use Cake\Event\EventInterface;
+
 /**
  * Inscricoes Controller
  *
@@ -108,12 +109,13 @@ class InscricoesController extends AppController
                 }
             }
         }
+            
+        $dados['data'] = date('Y-m-d');
+        $dados['timestamp'] = date('Y-m-d H:i:s');
         
-        $data = date('d-m-Y');
-        $dados['data'] = $data;
-
         $inscricao = $this->Inscricoes->newEmptyEntity();
-
+        $inscricao = $this->Inscricoes->patchEntity($inscricao, $dados);
+        
         try {
             $this->Authorization->authorize($inscricao);
         } catch (ForbiddenException $error) {
@@ -122,25 +124,21 @@ class InscricoesController extends AppController
         }
         
         if ($this->request->is('post')) {
-            $inscricao = $this->Inscricoes->patchEntity($inscricao, $dados);
             if ($this->Inscricoes->save($inscricao)) {
                 $this->Flash->success(__('Inscricao realizada com sucesso.'));
 
                 return $this->redirect(['action' => 'view', $inscricao->id]);
             }
+            
             $this->Flash->error(__('The inscricao could not be saved. Please, try again.'));
         }
         
-        $this->set(compact('inscricao', 'periodo', 'data'));
+        $this->set(compact('inscricao'));
         
-        if (!empty($aluno)) {
-            $this->set(compact('aluno'));
-        }
-        if (!empty($mural_estagio)) {
-            $this->set(compact('mural_estagio'));
-        } else {
-            $this->Flash->error(__("Erro ao localizar a vaga no mural de estágios"));
-        }
+        if (!empty($aluno)) { $this->set('aluno_id', $aluno->id); }
+        
+        if (!empty($mural_estagio)) { $this->set('mural_estagio_id', $mural_estagio->id); } 
+        else { $this->Flash->error(__("Erro ao localizar a vaga no mural de estágios")); }
     }
 
     /**

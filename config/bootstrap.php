@@ -44,7 +44,6 @@ use Cake\Mailer\TransportFactory;
 use Cake\Routing\Router;
 use Cake\Utility\Security;
 use Cake\Utility\Inflector;
-use Cake\I18n\Date;
 
 /**
  * Load global functions.
@@ -218,6 +217,9 @@ ServerRequest::addDetector('tablet', function ($request) {
 // \Cake\Database\TypeFactory::build('timestamptimezone')
 //    ->useLocaleParser();
 
+// \Cake\Database\TypeFactory::build('date')->useLocaleParser()->setLocaleFormat('d-m-Y');
+// \Cake\Database\TypeFactory::build('datetime')->useLocaleParser()->setLocaleFormat('d-m-Y');
+
 /*
  * Custom Inflector rules, can be set to correctly pluralize or singularize
  * table, model, controller names or whatever other string is passed to the
@@ -239,8 +241,9 @@ Inflector::rules('irregular', ['supervisor'    => 'supervisores']);
 // set a custom date and time format
 // see https://book.cakephp.org/5/en/core-libraries/time.html#setting-the-default-locale-and-format-string
 // and https://unicode-org.github.io/icu/userguide/format_parse/datetime/#datetime-format-syntax
-Date::setToStringFormat('dd.MM.yyyy');
-//\Cake\I18n\Time::setToStringFormat('dd.MM.yyyy HH:mm');
+
+// \Cake\I18n\Date::setToStringFormat('dd.MM.yyyy');
+// \Cake\I18n\Time::setToStringFormat('dd.MM.yyyy HH:mm');
 
 Configure::write('CakePdf', [
     'engine' => [

@@ -242,27 +242,33 @@ class EstagiariosController extends AppController
             $aluno_id = $user_data['aluno_id'];
         }
 
-        if (!isset($aluno_id)) {
+        $estagiario = $this->Estagiarios->find()->where(['aluno_id' => $aluno_id])->contain(['Alunos'])->first();
+        if ($estagiario) { 
+            $this->set('estagiario', $estagiario);
+            $aluno = $estagiario->aluno;
+        }
+        
+        if (empty($aluno)) {
+            $inscricao = $this->fetchTable('Inscricoes')->find()->where(['aluno_id' => $aluno_id])->contain(['Alunos'])->first();
+            $aluno = $inscricao->aluno;
+        } 
+        
+        if (empty($aluno)) {
+            $aluno = $this->fetchTable("Alunos")->find()->where(['id' => $aluno_id])->first();
+        }
+        
+        if (empty($aluno)) {
             $this->Flash->error(__('Usuário(a) não está registrado como aluno(a)'));
             return $this->redirect(['controller' => 'Users', 'action' => 'view', $user_data->id]);
-        }
-
-        $estagiario = $this->Estagiarios->find()->where(['aluno_id' => $aluno_id])->contain(['Alunos'])->first();
-        
-        if (!empty($estagiario->aluno)) {
-            $this->set('aluno', $estagiario->aluno);
         } else {
-            $aluno = $this->fetchTable("Alunos")->find()->where(['id' => $aluno_id])->first();
             $this->set('aluno', $aluno);
         }
-            
+
+        $configuracao = $this->fetchTable('Configuracoes')->find()->select(['mural_periodo_atual'])->first();
+        $periodo_atual = $configuracao->mural_periodo_atual;
+        $this->set('periodo', $periodo_atual);
+
         if ($estagiario) {
-            $this->set('estagiario', $estagiario);
-        
-            $configuracao = $this->fetchTable('Configuracoes')->find()->select(['mural_periodo_atual'])->first();
-            $periodo_atual = $configuracao->mural_periodo_atual;
-            $this->set('periodo', $periodo_atual);
-            
             $compare = $this->comparePeriodo((string)$periodo_atual, (string)$estagiario->periodo);
            
             if ($compare === -1) {
@@ -280,7 +286,6 @@ class EstagiariosController extends AppController
             // if ($compare === 1) {
             //     return $this->redirect(['action' => 'add']);
             // }
-            
         }
         
         $instituicoes = $this->Estagiarios->Instituicoes->find('list');

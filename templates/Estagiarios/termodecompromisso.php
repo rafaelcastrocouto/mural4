@@ -11,7 +11,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        var url = "<?= $this->Html->Url->build(['controller' => 'estagiarios', 'action' => 'termodecompromisso', '?' => ['aluno_id' => $aluno_id]]); ?>";
+        var url = "<?= $this->Html->Url->build(['controller' => 'estagiarios', 'action' => 'termodecompromisso', '?' => ['aluno_id' => $aluno->id]]); ?>";
         // alert(url);
         $("#instituicao-id").change(function () {
             var instituicao = $(this).val();

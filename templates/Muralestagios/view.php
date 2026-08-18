@@ -3,7 +3,6 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Muralestagio $muralestagio
  */
-
 declare(strict_types=1);
 
 $user_data = ['administrador_id'=>0,'aluno_id'=>0,'professor_id'=>0,'supervisor_id'=>0];
@@ -159,8 +158,8 @@ if ($user_session) { $user_data = $user_session->getOriginalData(); }
 					</tr>
 				
 				<?php endif; ?>
-								
-				<?php if (date('d-m-Y') <= $muralestagio['data_inscricao']): ?>
+							
+				<?php if (new \Cake\I18n\Date('now') <= $muralestagio['data_inscricao']): ?>
 						
 					<!--	Se a inscricao e na instituição também tem que fazer inscrição no mural //-->
 					<?php if ((string)$muralestagio['localInscricao'] === '1'): ?>
